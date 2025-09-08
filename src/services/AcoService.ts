@@ -327,9 +327,9 @@ export class AcoService {
         }
       }
       route.visitTime = visitTime / 60;
-      route.totalTime = (route.duration ?? 0) + visitTime;
+      route.totalTime = (route.duration ?? 0) + visitTime / 60;
       console.log('route.duration', totalDuration, visitTime);
-      route.duration = totalDuration + visitTime / 60;
+      route.duration = totalDuration + visitTime;
     }
 
     if (clusteredPois.length < pois.length) {

@@ -39,8 +39,9 @@ const RouteDurationChart: React.FC<ChartProps> = ({
   }
 
   const metricsWithDuration = metrics.filter(
-    (m) => m.routeDuration !== undefined && m.routeDuration > 0,
+    (m) => m.routeTotalTime !== undefined && m.routeTotalTime > 0,
   );
+  console.log('metricsWithDuration', metricsWithDuration);
 
   if (metricsWithDuration.length === 0) {
     return (
@@ -51,10 +52,10 @@ const RouteDurationChart: React.FC<ChartProps> = ({
   }
 
   const sortedMetrics = [...metricsWithDuration].sort(
-    (a, b) => (a.routeDuration || 0) - (b.routeDuration || 0),
+    (a, b) => (a.routeTotalTime || 0) - (b.routeTotalTime || 0),
   );
   const maxTime = Math.max(
-    ...metricsWithDuration.map((m) => m.routeDuration || 0),
+    ...metricsWithDuration.map((m) => m.routeTotalTime || 0),
   );
 
   return (
@@ -64,7 +65,7 @@ const RouteDurationChart: React.FC<ChartProps> = ({
       </Typography>
       <Box sx={{ mt: 2 }}>
         {sortedMetrics.map((metric, index) => {
-          const routeTime = metric.routeDuration || 0;
+          const routeTime = metric.routeTotalTime || 0;
           const percentage = maxTime > 0 ? (routeTime / maxTime) * 100 : 0;
           const algorithmLabel = metric.variant
             ? `${metric.algorithmName} (${metric.variant})`
@@ -316,9 +317,9 @@ export const MetricsDisplay: React.FC = () => {
     const metricsMap = new Map<string, AlgorithmMetrics>();
 
     allMetrics.forEach((metric) => {
-      const key = `${metric.algorithmName}_${
-        metric.variant || 'default'
-      }_${metric.nodeCount}`;
+      const key = `${metric.algorithmName}_${metric.variant || 'default'}_${
+        metric.nodeCount
+      }`;
       const existingMetric = metricsMap.get(key);
 
       if (!existingMetric || metric.timestamp > existingMetric.timestamp) {
@@ -339,9 +340,9 @@ export const MetricsDisplay: React.FC = () => {
     groups.group15 = deduplicatedMetrics.filter(
       (m) =>
         m.nodeCount === 15 &&
-        (m.algorithmName === 'BranchAndBound' ||
-          m.algorithmName === 'DynamicProgramming' ||
-          m.algorithmName === 'Greedy' ||
+        // m.algorithmName === 'BranchAndBound' ||
+        (m.algorithmName === 'DynamicProgramming' ||
+          // m.algorithmName === 'Greedy' ||
           m.algorithmName === 'ACO' ||
           m.algorithmName === 'Bitonic' ||
           m.algorithmName === 'Arora PTAS'),
@@ -351,7 +352,7 @@ export const MetricsDisplay: React.FC = () => {
       (m) =>
         m.nodeCount === 30 &&
         (m.algorithmName === 'DynamicProgramming' ||
-          m.algorithmName === 'Greedy' ||
+          // m.algorithmName === 'Greedy' ||
           m.algorithmName === 'ACO' ||
           m.algorithmName === 'Bitonic' ||
           m.algorithmName === 'Arora PTAS'),
@@ -361,7 +362,7 @@ export const MetricsDisplay: React.FC = () => {
       (m) =>
         m.nodeCount === 90 &&
         (m.algorithmName === 'ACO' ||
-          m.algorithmName === 'Greedy' ||
+          // m.algorithmName === 'Greedy' ||
           m.algorithmName === 'Bitonic' ||
           m.algorithmName === 'Arora PTAS'),
     );

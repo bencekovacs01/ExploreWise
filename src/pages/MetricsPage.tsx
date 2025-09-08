@@ -200,21 +200,21 @@ const MetricsPage: React.FC = () => {
         await new Promise((resolve) => setTimeout(resolve, 200));
       }
 
-      for (let i = 0; i < branchAndBoundNodeCounts.length; i++) {
-        const batchResults = await processOtherAlgorithmsBatch(
-          branchAndBoundNodeCounts[i],
-          'BranchAndBound',
-        );
-        setTestResults((prev) => prev + batchResults);
+      // for (let i = 0; i < branchAndBoundNodeCounts.length; i++) {
+      //   const batchResults = await processOtherAlgorithmsBatch(
+      //     branchAndBoundNodeCounts[i],
+      //     'BranchAndBound',
+      //   );
+      //   setTestResults((prev) => prev + batchResults);
 
-        testsCompleted++;
-        const currentProgress = Math.min(
-          98,
-          Math.round((testsCompleted / totalTests) * 100),
-        );
-        setProgress(currentProgress);
-        await new Promise((resolve) => setTimeout(resolve, 100));
-      }
+      //   testsCompleted++;
+      //   const currentProgress = Math.min(
+      //     98,
+      //     Math.round((testsCompleted / totalTests) * 100),
+      //   );
+      //   setProgress(currentProgress);
+      //   await new Promise((resolve) => setTimeout(resolve, 100));
+      // }
 
       for (let i = 0; i < dynamicProgrammingNodeCounts.length; i++) {
         const batchResults = await processOtherAlgorithmsBatch(
@@ -248,21 +248,21 @@ const MetricsPage: React.FC = () => {
         await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
-      for (let i = 0; i < greedyNodeCounts.length; i++) {
-        const batchResults = await processOtherAlgorithmsBatch(
-          greedyNodeCounts[i],
-          'Greedy',
-        );
-        setTestResults((prev) => prev + batchResults);
+      // for (let i = 0; i < greedyNodeCounts.length; i++) {
+      //   const batchResults = await processOtherAlgorithmsBatch(
+      //     greedyNodeCounts[i],
+      //     'Greedy',
+      //   );
+      //   setTestResults((prev) => prev + batchResults);
 
-        testsCompleted++;
-        const currentProgress = Math.min(
-          98,
-          Math.round((testsCompleted / totalTests) * 100),
-        );
-        setProgress(currentProgress);
-        await new Promise((resolve) => setTimeout(resolve, 100));
-      }
+      //   testsCompleted++;
+      //   const currentProgress = Math.min(
+      //     98,
+      //     Math.round((testsCompleted / totalTests) * 100),
+      //   );
+      //   setProgress(currentProgress);
+      //   await new Promise((resolve) => setTimeout(resolve, 100));
+      // }
 
       for (let i = 0; i < ptasNodeCounts.length; i++) {
         const batchResults = await processOtherAlgorithmsBatch(
@@ -280,21 +280,21 @@ const MetricsPage: React.FC = () => {
         await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
-      for (let i = 0; i < backtrackingNodeCounts.length; i++) {
-        const batchResults = await processOtherAlgorithmsBatch(
-          backtrackingNodeCounts[i],
-          'Backtracking',
-        );
-        setTestResults((prev) => prev + batchResults);
+      // for (let i = 0; i < backtrackingNodeCounts.length; i++) {
+      //   const batchResults = await processOtherAlgorithmsBatch(
+      //     backtrackingNodeCounts[i],
+      //     'Backtracking',
+      //   );
+      //   setTestResults((prev) => prev + batchResults);
 
-        testsCompleted++;
-        const currentProgress = Math.min(
-          98,
-          Math.round((testsCompleted / totalTests) * 100),
-        );
-        setProgress(currentProgress);
-        await new Promise((resolve) => setTimeout(resolve, 100));
-      }
+      //   testsCompleted++;
+      //   const currentProgress = Math.min(
+      //     98,
+      //     Math.round((testsCompleted / totalTests) * 100),
+      //   );
+      //   setProgress(currentProgress);
+      //   await new Promise((resolve) => setTimeout(resolve, 100));
+      // }
 
       setTestResults(
         (prev) =>

@@ -2,9 +2,10 @@ import Coordinate from '../models/Coordinate';
 import Route from '../models/Route';
 import { IPoiData } from '../models/models';
 import { clusterNearbyPOIs } from '../utils/cluster.utils';
-import { expandClusteredRoute, getRouteMatrices } from '../utils/route.utils';
+import { expandClusteredRoute } from '../utils/route.utils';
 import { metricsService } from './MetricsService';
 import CategoryDurations from '../components/CategorySelector/category_times.json';
+import matrices from '../../matrices_output.json';
 
 interface GridCell {
   x: number;
@@ -154,8 +155,9 @@ export class AroraPTASService {
       poiMetadata,
     );
 
-    const { distanceMatrix, durationMatrix } =
-      await getRouteMatrices(clusteredPois);
+    const { distanceMatrix, durationMatrix } = await this.getRouteMatrices(
+      clusteredPois,
+    );
 
     // Normalize coordinates to [0,1] x [0,1] for grid decomposition
     const normalizedPois = this.normalizeCoordinates(clusteredPois);
@@ -237,7 +239,9 @@ export class AroraPTASService {
   ): Promise<Route> {
     // For small instances, use a simple nearest neighbor approach
     // In practice, you might want to use exact algorithms here
-    const { distanceMatrix, durationMatrix } = await getRouteMatrices(pois);
+    const { distanceMatrix, durationMatrix } = await this.getRouteMatrices(
+      pois,
+    );
 
     const n = pois.length;
     const visited = new Array(n).fill(false);
@@ -548,6 +552,16 @@ export class AroraPTASService {
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
     return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  private async getRouteMatrices(coordinates: Coordinate[]): Promise<{
+    distanceMatrix: number[][];
+    durationMatrix: number[][];
+  }> {
+    return {
+      distanceMatrix: (matrices as any).distanceMatrix,
+      durationMatrix: (matrices as any).durationMatrix,
+    };
   }
 }
 
