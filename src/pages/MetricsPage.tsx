@@ -28,12 +28,12 @@ const MetricsPage: React.FC = () => {
     );
 
     const bitonicNodeCounts = [15, 30, 90];
-    const branchAndBoundNodeCounts = [15];
     const dynamicProgrammingNodeCounts = [15, 30];
     const acoNodeCounts = [15, 30, 90];
-    const greedyNodeCounts = [15, 30, 90];
-    const backtrackingNodeCounts: number[] = [];
-    const ptasNodeCounts = [15, 30, 90]; // Add PTAS testing
+    const ptasNodeCounts = [15, 30, 90];
+    // const branchAndBoundNodeCounts = [15];
+    // const greedyNodeCounts = [15, 30, 90];
+    // const backtrackingNodeCounts: number[] = [];
 
     const strategies = Object.values(SortStrategy);
 
@@ -169,11 +169,11 @@ const MetricsPage: React.FC = () => {
       );
       const totalTests =
         totalBitonicTests +
-        branchAndBoundNodeCounts.length +
+        // branchAndBoundNodeCounts.length +
         dynamicProgrammingNodeCounts.length +
         acoNodeCounts.length +
-        greedyNodeCounts.length +
-        backtrackingNodeCounts.length +
+        // greedyNodeCounts.length +
+        // backtrackingNodeCounts.length +
         ptasNodeCounts.length; // Add PTAS to total count
       let testsCompleted = 0;
 

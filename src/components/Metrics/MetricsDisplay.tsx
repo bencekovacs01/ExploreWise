@@ -41,7 +41,6 @@ const RouteDurationChart: React.FC<ChartProps> = ({
   const metricsWithDuration = metrics.filter(
     (m) => m.routeTotalTime !== undefined && m.routeTotalTime > 0,
   );
-  console.log('metricsWithDuration', metricsWithDuration);
 
   if (metricsWithDuration.length === 0) {
     return (
@@ -352,7 +351,7 @@ export const MetricsDisplay: React.FC = () => {
       (m) =>
         m.nodeCount === 30 &&
         (m.algorithmName === 'DynamicProgramming' ||
-          // m.algorithmName === 'Greedy' ||
+          m.algorithmName === 'Greedy' ||
           m.algorithmName === 'ACO' ||
           m.algorithmName === 'Bitonic' ||
           m.algorithmName === 'Arora PTAS'),
@@ -362,7 +361,7 @@ export const MetricsDisplay: React.FC = () => {
       (m) =>
         m.nodeCount === 90 &&
         (m.algorithmName === 'ACO' ||
-          // m.algorithmName === 'Greedy' ||
+          m.algorithmName === 'Greedy' ||
           m.algorithmName === 'Bitonic' ||
           m.algorithmName === 'Arora PTAS'),
     );
@@ -968,50 +967,46 @@ export const MetricsDisplay: React.FC = () => {
           {renderMetricsTable(algorithmGroups.group15, '15-node comparison')}
         </TabPanel>
 
-                <TabPanel value={activeTab} index={1}>
-                    <Typography variant="h6" gutterBottom>
-                        Dynamic Programming vs ACO vs Bitonic vs Arora PTAS (30 Nodes)
-                    </Typography>
-                    <RouteDurationChart
-                        metrics={algorithmGroups.group30}
-                        title="Route Duration Comparison - 30 Nodes"
-                    />
-                    <RouteDistanceChart
-                        metrics={algorithmGroups.group30}
-                        title="Route Distance Comparison - 30 Nodes"
-                    />
-                    <ExecutionTimeChart
-                        metrics={algorithmGroups.group30}
-                        title="Algorithm Execution Time - 30 Nodes"
-                    />
-                    {renderMetricsTable(
-                        algorithmGroups.group30,
-                        '30-node comparison',
-                    )}
-                </TabPanel>
+        <TabPanel value={activeTab} index={1}>
+          <Typography variant="h6" gutterBottom>
+            Dynamic Programming vs ACO vs Bitonic vs Arora PTAS (30 Nodes)
+          </Typography>
+          <RouteDurationChart
+            metrics={algorithmGroups.group30}
+            title="Route Duration Comparison - 30 Nodes"
+          />
+          <RouteDistanceChart
+            metrics={algorithmGroups.group30}
+            title="Route Distance Comparison - 30 Nodes"
+          />
+          <ExecutionTimeChart
+            metrics={algorithmGroups.group30}
+            title="Algorithm Execution Time - 30 Nodes"
+          />
+          {renderMetricsTable(algorithmGroups.group30, '30-node comparison')}
+        </TabPanel>
 
-                <TabPanel value={activeTab} index={2}>
-                    <Typography variant="h6" gutterBottom>
-                        ACO vs Bitonic vs Arora PTAS Strategy Comparison (90
-                        Nodes)
-                    </Typography>
-                    <RouteDurationChart
-                        metrics={algorithmGroups.group90}
-                        title="Route Duration Comparison (90 Nodes)"
-                    />
-                    <RouteDistanceChart
-                        metrics={algorithmGroups.group90}
-                        title="Route Distance Comparison (90 Nodes)"
-                    />
-                    <ExecutionTimeChart
-                        metrics={algorithmGroups.group90}
-                        title="Algorithm Execution Time (90 Nodes)"
-                    />
-                    {renderMetricsTable(algorithmGroups.group90, '90-node')}
-                </TabPanel>
-            </Box>
-        );
-    };
+        <TabPanel value={activeTab} index={2}>
+          <Typography variant="h6" gutterBottom>
+            ACO vs Bitonic vs Arora PTAS Strategy Comparison (90 Nodes)
+          </Typography>
+          <RouteDurationChart
+            metrics={algorithmGroups.group90}
+            title="Route Duration Comparison (90 Nodes)"
+          />
+          <RouteDistanceChart
+            metrics={algorithmGroups.group90}
+            title="Route Distance Comparison (90 Nodes)"
+          />
+          <ExecutionTimeChart
+            metrics={algorithmGroups.group90}
+            title="Algorithm Execution Time (90 Nodes)"
+          />
+          {renderMetricsTable(algorithmGroups.group90, '90-node')}
+        </TabPanel>
+      </Box>
+    );
+  };
 
   if (deduplicatedMetrics.length === 0) {
     return (

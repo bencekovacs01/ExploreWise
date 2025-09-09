@@ -1,5 +1,4 @@
 import { performance } from 'perf_hooks';
-import v8 from 'v8';
 
 export interface PerformanceMetrics {
   executionTimeMs: number;
@@ -21,7 +20,6 @@ export async function measurePerformance<T>(
   }
 
   const memBefore = process.memoryUsage();
-  const heapBefore = v8.getHeapStatistics();
 
   const startTime = performance.now();
 
@@ -31,7 +29,6 @@ export async function measurePerformance<T>(
   const executionTimeMs = endTime - startTime;
 
   const memAfter = process.memoryUsage();
-  const heapAfter = v8.getHeapStatistics();
 
   const memoryUsageMB =
     Math.round(

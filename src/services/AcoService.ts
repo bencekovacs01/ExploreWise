@@ -328,7 +328,6 @@ export class AcoService {
       }
       route.visitTime = visitTime / 60;
       route.totalTime = (route.duration ?? 0) + visitTime / 60;
-      console.log('route.duration', totalDuration, visitTime);
       route.duration = totalDuration + visitTime;
     }
 
