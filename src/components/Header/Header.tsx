@@ -25,7 +25,6 @@ export default function Header({
       const currentScrollPos = window.pageYOffset;
 
       if (currentScrollPos <= 10) {
-        console.log('currentScrollPos', currentScrollPos);
         setVisible(true);
         return;
       }
